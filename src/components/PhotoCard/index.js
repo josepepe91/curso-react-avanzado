@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {Button, Img, ImgWrapper} from './styles';
 import {GoHeart} from 'react-icons/go';
 
