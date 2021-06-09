@@ -24,3 +24,7 @@ export const List = styled.ul`
 export const Item = styled.li`
   padding: 0 8px;
 `
+
+export const Article = styled.article`
+  min-height: 100px;
+`
