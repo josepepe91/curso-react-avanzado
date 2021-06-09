@@ -4,6 +4,8 @@
   "description": "**¡Sígueme en Youtube para más contenido de React y Javascript!** 👉 https://www.youtube.com/midudev",
   "main": "webpack.config.js",
   "dependencies": {
+    "@apollo/client": "^3.3.20",
+    "graphql": "^15.5.0",
     "html-webpack-plugin": "^5.3.1",
     "intersection-observer": "^0.12.0",
     "react": "^17.0.2",

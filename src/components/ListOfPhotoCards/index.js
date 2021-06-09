@@ -1,8 +1,16 @@
 import React from 'react';
 import {PhotoCard} from '../PhotoCard';
+import {useGetPhotos} from '../../hooks/useGetPhotos';
 
-export const ListOfPhotoCards = () => (
-  <ul>
-    {[1, 2, 3, 4, 5, 6, 7, 8].map(id => <PhotoCard key={id} id={id}/>)}
+export const ListOfPhotoCards = ({categoryId}) => {
+  const {loading, error, data} = useGetPhotos(categoryId)
+  if (error) {
+    return <h2>Internal Server Error</h2>
+  }
+  if (loading) {
+    return <h2>loading...</h2>
+  }
+  return <ul>
+    {data.photos.map(photo => <PhotoCard key={photo.id} {...photo}/>)}
   </ul>
-)
+}
