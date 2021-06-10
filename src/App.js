@@ -21,7 +21,7 @@ export const App = () => {
         :
         <Fragment>
           <ListOfCategories/>
-          <ListOfPhotoCards categoryId={1}/>
+          <ListOfPhotoCards categoryId={2}/>
         </Fragment>
     }
   </div>)
