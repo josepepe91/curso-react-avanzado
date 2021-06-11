@@ -14,7 +14,7 @@ export const useRegisterMutation = () => {
       variables: {
         input: { email, password }
       }
-    }).then()
+    })
   }
   return { mutationRegister, mutationLoading, mutationError }
 }
