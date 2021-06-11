@@ -1,13 +1,13 @@
-import React from 'react';
-import {MdFavorite, MdFavoriteBorder} from 'react-icons/md';
-import {Button} from './styles';
+import React from 'react'
+import { MdFavorite, MdFavoriteBorder } from 'react-icons/md'
+import { Button } from './styles'
 
-export const FavButton = ({liked, likes, onClick}) => {
+export const FavButton = ({ liked, likes, onClick }) => {
   const Icon = liked ? MdFavorite : MdFavoriteBorder
 
   return (
     <Button onClick={onClick}>
-      <Icon size="32px"/> {likes} likes!
+      <Icon size='32px' /> {likes} likes!
     </Button>
   )
 }

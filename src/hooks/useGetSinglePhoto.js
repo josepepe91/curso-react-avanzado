@@ -1,4 +1,4 @@
-import {gql, useQuery} from '@apollo/client';
+import { gql, useQuery } from '@apollo/client'
 
 const GET_SINGLE_PHOTO = gql`
   query getSinglePhoto($id: ID!) {
@@ -14,7 +14,7 @@ const GET_SINGLE_PHOTO = gql`
 `
 
 export const useGetSinglePhoto = (id) => {
-  const {loading, error, data} = useQuery(GET_SINGLE_PHOTO, {variables: {id}})
+  const { loading, error, data } = useQuery(GET_SINGLE_PHOTO, { variables: { id } })
 
-  return {loading, error, data}
+  return { loading, error, data }
 }

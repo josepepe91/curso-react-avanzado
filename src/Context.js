@@ -1,8 +1,8 @@
-import React, {createContext, useState} from "react";
+import React, { createContext, useState } from 'react'
 
-const Context = createContext({isAuth: false})
+const Context = createContext({ isAuth: false })
 
-const Provider = ({children}) => {
+const Provider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false)
 
   const value = {

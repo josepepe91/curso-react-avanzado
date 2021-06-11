@@ -1,6 +1,6 @@
-import React, {Fragment, useEffect, useState} from 'react';
-import {Category} from '../Category';
-import {Item, List} from './styles';
+import React, { Fragment, useEffect, useState } from 'react'
+import { Category } from '../Category'
+import { Item, List } from './styles'
 
 const useCategoryData = () => {
   const [categories, setCategories] = useState([])
@@ -12,17 +12,17 @@ const useCategoryData = () => {
     fetch('https://petgram-server-jalbarado91-ebioch5dg-josepepe91.vercel.app/categories')
       .then(res => res.json())
       .then(response => {
-          setCategories(response)
-          setLoading(false)
-        }
+        setCategories(response)
+        setLoading(false)
+      }
       )
   }, [])
 
-  return {categories, loading}
+  return { categories, loading }
 }
 
 export const ListOfCategories = () => {
-  const {categories, loading} = useCategoryData()
+  const { categories, loading } = useCategoryData()
   // hooks
   const [showFixed, setShowFixed] = useState(false)
 
@@ -42,23 +42,22 @@ export const ListOfCategories = () => {
   const renderList = (fixed) => (
     <List fixed={fixed}>
       {
-        loading ?
-          <Item key="loading">
-            <Category/>
-          </Item>
-          :
-          categories.map(category =>
+        loading
+          ? <Item key='loading'>
+            <Category />
+            </Item>
+          : categories.map(category =>
             <Item key={category.id}>
-              <Category {...category} path={`/pet/${category.id}`}/>
+              <Category {...category} path={`/pet/${category.id}`} />
             </Item>)
       }
     </List>
   )
 
   return (
-    <Fragment>
+    <>
       {renderList()}
       {showFixed && renderList(true)}
-    </Fragment>
+    </>
   )
 }

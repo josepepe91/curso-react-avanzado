@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components'
 
 export const List = styled.ul`
   display: flex;
@@ -18,7 +18,7 @@ export const List = styled.ul`
     z-index: 1;
     max-width: 375px;
   `
-  }
+}
 `
 
 export const Item = styled.li`

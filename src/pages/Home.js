@@ -1,12 +1,12 @@
-import {ListOfCategories} from '../components/ListOfCategories';
-import {ListOfPhotoCards} from '../components/ListOfPhotoCards';
-import React, {Fragment} from 'react';
+import { ListOfCategories } from '../components/ListOfCategories'
+import { ListOfPhotoCards } from '../components/ListOfPhotoCards'
+import React, { Fragment } from 'react'
 
-export const Home = ({categoryId}) => {
+export const Home = ({ categoryId }) => {
   return (
-    <Fragment>
-      <ListOfCategories/>
-      <ListOfPhotoCards categoryId={categoryId}/>
-    </Fragment>
+    <>
+      <ListOfCategories />
+      <ListOfPhotoCards categoryId={categoryId} />
+    </>
   )
 }
