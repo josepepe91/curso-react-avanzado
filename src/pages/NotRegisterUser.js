@@ -2,29 +2,54 @@ import React from 'react'
 import Context from '../Context'
 import { UserForm } from '../components/UserForm'
 import { useRegisterMutation } from '../hooks/useRegisterMutation'
+import { useLoginMutation } from '../hooks/useLoginMutation'
 
 export const NotRegisterUser = () => {
-  const { mutationRegister, mutationError, mutationLoading } =
-    useRegisterMutation()
+  const {
+    mutationRegister,
+    mutationError: errorRegistry,
+    mutationLoading: loadingRegistry
+  } = useRegisterMutation()
+  const {
+    mutationLogin,
+    mutationError: errorLogin,
+    mutationLoading: loadingLogin
+  } = useLoginMutation()
 
   return (
     <Context.Consumer>
-      {({ isAuth, activateAuth }) => {
-        const onSubmit = ({ email, password }) => {
-          mutationRegister({ email, password })?.then(activateAuth)
+      {({ activateAuth }) => {
+        const onSubmitRegister = ({ email, password }) => {
+          mutationRegister({ email, password }).then((data) => {
+            activateAuth()
+          })
         }
 
-        const errorMessage =
-          mutationError && 'El usuario ya existe o hay algún problema'
+        const onSubmitLogin = ({ email, password }) => {
+          mutationLogin({ email, password }).then(() => {
+            activateAuth()
+          })
+        }
+
+        const errorMessageRegistry =
+          errorRegistry && 'El usuario ya existe o hay algún problema'
+
+        const errorMessageLogin =
+          errorLogin && 'La contraseña no es correcta o el usuario no existe'
         return (
           <>
             <UserForm
-              error={errorMessage}
-              disabled={mutationLoading}
+              error={errorMessageRegistry}
+              disabled={loadingRegistry}
               title='Registrarse'
-              onSubmit={onSubmit}
+              onSubmit={onSubmitRegister}
             />
-            <UserForm title='Iniciar Sesión' onSubmit={onSubmit} />
+            <UserForm
+              error={errorMessageLogin}
+              disabled={loadingLogin}
+              title='Iniciar Sesión'
+              onSubmit={onSubmitLogin}
+            />
           </>
         )
       }}

@@ -10,7 +10,7 @@ export const useRegisterMutation = () => {
     useMutation(REGISTER)
 
   const mutationRegister = ({ email, password }) => {
-    mutation({
+    return mutation({
       variables: {
         input: { email, password }
       }
