@@ -10,7 +10,7 @@ export const useLoginMutation = () => {
     useMutation(LOGIN)
 
   const mutationLogin = ({ email, password }) => {
-    mutation({
+    return mutation({
       variables: {
         input: { email, password }
       }
