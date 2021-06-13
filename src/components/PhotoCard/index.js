@@ -1,24 +1,31 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Img, ImgWrapper } from './styles'
 import { Article } from '../ListOfCategories/styles'
-import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { useNearScreen } from '../../hooks/useNearScreen'
 import { FavButton } from '../FavButton'
 import { useToggleLikeMutation } from '../../hooks/useToggleLikeMutation'
-import { Link } from '@reach/router'
+import { Link, useNavigate } from '@reach/router'
+import { Context } from '../../Context'
 
 const DEFAULT_IMAGE =
   'https://images.unsplash.com/photo-1500879747858-bb1845b61beb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
 
-export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
-  const key = `like-${id}`
-  const [liked, setLiked] = useLocalStorage(key, false)
+export const PhotoCard = ({ id, liked, likes = 0, src = DEFAULT_IMAGE }) => {
   const [show, element] = useNearScreen()
-  const { mutationToggle } = useToggleLikeMutation({ id })
+  const { mutationToggle, mutationError } = useToggleLikeMutation({ id })
+  const navigate = useNavigate()
+  const { removeAuth } = useContext(Context)
 
   const handleFavClick = () => {
-    !liked && mutationToggle()
-    setLiked(!liked)
+    mutationToggle().then((data) => {
+      console.log('like-data', data)
+    })
+  }
+
+  if (mutationError) {
+    console.log('mutationError')
+    removeAuth()
+    navigate('/user')
   }
 
   return (
