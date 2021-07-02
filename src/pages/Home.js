@@ -1,15 +1,24 @@
 import { ListOfCategories } from '../components/ListOfCategories'
 import { ListOfPhotoCards } from '../components/ListOfPhotoCards'
 import React from 'react'
-import { Layout } from '../components/Layout'
+import { Helmet } from 'react-helmet'
 
-export const Home = ({ categoryId }) => {
+const HomePage = ({ categoryId }) => {
   return (
-    <Layout
-      title='Petgram - Tu app de fotos de mascotas'
-      subtitle='Con petgram podrás encontrar fotos de animales domésticos muy bonitos'>
+    <>
+      <Helmet>
+        <title>Petgram - Tu app de fotos de mascotas</title>
+        <meta
+          name='description'
+          content='Con petgram podrás encontrar fotos de animales domésticos muy bonitos'
+        />
+      </Helmet>
       <ListOfCategories />
       <ListOfPhotoCards categoryId={categoryId} />
-    </Layout>
+    </>
   )
 }
+
+export const Home = React.memo(HomePage, (prevProps, props) => {
+  return prevProps.categoryId === props.categoryId
+})
