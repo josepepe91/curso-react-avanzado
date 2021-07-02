@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, Image, Link } from './styles'
 import { useGetFavs } from '../../hooks/useGetFavs'
+import { PropTypes } from 'prop-types'
 
 export const ListOfFavs = () => {
   const { data, loading, error } = useGetFavs()
